@@ -21,7 +21,7 @@
     #10305f
   
   );
-  overflow: hidden;
+    overflow: scroll;
 }
 h1 {
   text-align: center;
