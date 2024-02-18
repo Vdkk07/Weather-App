@@ -122,27 +122,27 @@ function renderWeatherInfo(weatherInfo) {
   cloud.innerText = `${weatherInfo?.clouds?.all}%`;
 }
 
-const grantAccessButton = document.querySelector("[data-grantAccess]");
-
-// add event listener to button
-grantAccessButton.addEventListener("click", getLocation());
 
 function getLocation() {
-  // support available
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
-
-    // support not available
   } else {
-    alert("Geolocation is not supported by this browser");
+    alert("Geolocation is not supported")
   }
 }
 
-function showPosition(positon) {
+function showPosition(position) {
   const userCoordinates = {
-    lat: positon.coords.latitude,
-    lon: positon.coords.longitude,
+    lat: position.coords.latitude,
+    lon: position.coords.longitude,
   };
+
+  sessionStorage.setItem("user-coordinates", JSON.stringify(userCoordinates));
+  fetchUserWeatherInfo(userCoordinates);
+}
+
+const grantAccessButton = document.querySelector("[data-grantAccess]");
+grantAccessButton.addEventListener("click", getLocation);
 
   sessionStorage.setItem("user-coordinates", JSON.stringify(userCoordinates));
   fetchUserWeatherInfo(userCoordinates);
