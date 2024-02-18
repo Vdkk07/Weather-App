@@ -23,6 +23,11 @@
   );
     overflow: scroll;
 }
+
+.wrapper::-webkit-scrollbar {
+  background: transparent;
+}
+
 h1 {
   text-align: center;
   text-transform: uppercase;
